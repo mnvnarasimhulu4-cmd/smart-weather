@@ -5,6 +5,7 @@
 
   <meta name="description" content="Smart weather app with real-time forecast, hourly updates and rain prediction.">
 
+  <!-- ✅ ADSENSE -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1832865393255121"
      crossorigin="anonymous"></script>
   
@@ -109,7 +110,6 @@
       border-radius: 10px;
     }
 
-    /* ✅ NEW CONTENT STYLE */
     .content {
       background: white;
       color: black;
@@ -131,9 +131,12 @@
 
   <h1>🌤 Premium Weather App</h1>
 
-  <input id="city" placeholder="Enter city">
-  <br>
-  <button onclick="getWeather()">Search</button>
+  <!-- ✅ ENTER KEY FIX (FORM METHOD) -->
+  <form onsubmit="getWeather(); return false;">
+    <input id="city" placeholder="Enter city">
+    <br>
+    <button type="submit">Search</button>
+  </form>
 
   <div class="card">
     <h2 id="cityName"></h2>
@@ -153,7 +156,7 @@
 
 </div>
 
-<!-- ✅ NEW CONTENT (ADSENSE FIX) -->
+<!-- ✅ CONTENT -->
 <div class="content">
 
 <h2>About This Weather App</h2>
@@ -177,7 +180,6 @@ This app is fast, simple, and useful for everyone. Whether you are planning a tr
 let apiKey = "3ebe83128feab32f2228c13395d83ea0";
 let fullForecastData = [];
 
-// 🌧️ Rain alert
 function checkRain(data) {
   for (let i = 0; i < 8; i++) {
     if ((data.list[i].pop || 0) > 0.6) {
@@ -187,7 +189,6 @@ function checkRain(data) {
   }
 }
 
-// ⏱️ Today hourly
 function showHourly(list) {
   let div = document.getElementById("data");
   div.innerHTML = "<h3>⏱️ Today</h3><div class='hour-container'>";
@@ -210,7 +211,6 @@ function showHourly(list) {
   div.innerHTML += "</div>";
 }
 
-// 📅 Forecast clickable
 function showForecast(list) {
   let div = document.getElementById("forecast");
   div.innerHTML = "<div class='forecast-container'>";
@@ -231,9 +231,7 @@ function showForecast(list) {
   div.innerHTML += "</div>";
 }
 
-// 🔥 Click → show that day
 function showDayDetails(date, element) {
-
   document.querySelectorAll(".forecast-box").forEach(el => el.classList.remove("active-day"));
   element.classList.add("active-day");
 
@@ -259,7 +257,6 @@ function showDayDetails(date, element) {
   div.innerHTML += "</div>";
 }
 
-// 🔓 Unlock forecast
 function unlockForecast() {
   document.getElementById("adSection").style.display = "block";
 
@@ -268,7 +265,6 @@ function unlockForecast() {
   }, 2000);
 }
 
-// 🔍 Search
 async function getWeather() {
   let city = document.getElementById("city").value;
 
@@ -299,8 +295,8 @@ async function getWeather() {
   <a href="about.html">About</a> |
   <a href="contact.html">Contact</a> |
   <a href="privacy.html">Privacy</a> |
-  <a href="terms.html">Terms</a>
-  <a href="blog.html">Blog</a> |
+  <a href="terms.html">Terms</a> |
+  <a href="blog.html">Blog</a>
 </footer>
 
 </body>
