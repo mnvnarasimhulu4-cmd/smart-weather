@@ -176,6 +176,8 @@ This app is fast, simple, and useful for everyone. Whether you are planning a tr
 
 </div>
 
+<!-- ONLY SHOWING UPDATED SCRIPT PART -->
+
 <script>
 let apiKey = "3ebe83128feab32f2228c13395d83ea0";
 let fullForecastData = [];
@@ -265,13 +267,32 @@ function unlockForecast() {
   }, 2000);
 }
 
+// ✅ 🔥 FIXED SEARCH FUNCTION
 async function getWeather() {
-  let city = document.getElementById("city").value;
+  let city = document.getElementById("city").value.trim();
+
+  if (!city) {
+    alert("Please enter a city name");
+    return;
+  }
 
   let res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
   let data1 = await res1.json();
 
-  document.getElementById("cityName").innerText = data1.name || city;
+  // ❌ INVALID CITY FIX
+  if (data1.cod !== 200) {
+    document.getElementById("cityName").innerText = "❌ City not found";
+    document.getElementById("temp").innerText = "";
+    document.getElementById("condition").innerText = "";
+
+    document.getElementById("data").innerHTML = "";
+    document.getElementById("forecast").innerHTML = "";
+
+    return;
+  }
+
+  // ✅ VALID DATA
+  document.getElementById("cityName").innerText = data1.name;
   document.getElementById("temp").innerText = data1.main.temp + "°C";
   document.getElementById("condition").innerText = data1.weather[0].description;
 
