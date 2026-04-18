@@ -131,7 +131,7 @@
 
   <h1>🌤 Premium Weather App</h1>
 
-  <!-- ✅ ENTER KEY FIX (FORM METHOD) -->
+  <!-- ✅ ENTER KEY FIX -->
   <form onsubmit="getWeather(); return false;">
     <input id="city" placeholder="Enter city">
     <br>
@@ -156,7 +156,7 @@
 
 </div>
 
-<!-- ✅ CONTENT -->
+<!-- ORIGINAL CONTENT -->
 <div class="content">
 
 <h2>About This Weather App</h2>
@@ -176,7 +176,61 @@ This app is fast, simple, and useful for everyone. Whether you are planning a tr
 
 </div>
 
-<!-- ONLY SHOWING UPDATED SCRIPT PART -->
+<!-- ✅ EXTRA CONTENT (ADDED) -->
+<div class="content">
+
+<h2>Benefits of Checking Weather Daily</h2>
+<p>
+Checking the weather daily helps individuals plan their day efficiently. Whether it is commuting to work,
+attending school, or planning outdoor activities, having accurate weather information reduces uncertainty.
+Weather updates allow users to prepare for unexpected conditions such as rain, storms, or extreme heat.
+</p>
+<p>
+Farmers rely heavily on weather forecasts to manage crops and irrigation. Travelers use weather apps to
+avoid delays and disruptions. Even simple decisions like choosing clothes depend on weather conditions.
+This makes weather apps an essential tool in everyday life.
+</p>
+
+<h2>Weather Tips for Daily Life</h2>
+<p>
+Always check the weather forecast before leaving your home. During rainy seasons, carry an umbrella or raincoat.
+In hot weather, stay hydrated and avoid direct sunlight during peak hours. Cold weather requires warm clothing
+to stay comfortable and healthy.
+</p>
+<p>
+Weather awareness also helps in avoiding dangerous situations. For example, storms and heavy winds can affect
+travel safety. By checking weather updates regularly, users can make better decisions and stay safe.
+</p>
+
+<h2>How to Use This Weather Website</h2>
+<p>
+Using this weather application is very simple. Enter the name of your city in the search box and click the
+search button. The app will display real-time temperature, weather conditions, and additional details instantly.
+</p>
+<p>
+You can also unlock the 5-day forecast to view upcoming weather trends. The hourly forecast provides a detailed
+view of weather changes throughout the day. This helps users plan their schedule more effectively.
+</p>
+
+<h2>Why Weather Forecast Accuracy Matters</h2>
+<p>
+Accurate weather forecasting plays a crucial role in many industries such as agriculture, aviation, and logistics.
+Reliable forecasts help prevent losses and improve efficiency. Modern weather systems use advanced technology
+like satellites and machine learning models to provide highly accurate predictions.
+</p>
+<p>
+With continuous improvements in data collection and analysis, weather apps are becoming more reliable than ever.
+This allows users to trust the information and make confident decisions based on forecasts.
+</p>
+
+<h2>Explore More</h2>
+<ul>
+  <li><a href="blog.html">Weather Blog</a></li>
+  <li><a href="about.html">About Our App</a></li>
+  <li><a href="contact.html">Contact Us</a></li>
+</ul>
+
+</div>
 
 <script>
 let apiKey = "3ebe83128feab32f2228c13395d83ea0";
@@ -267,7 +321,6 @@ function unlockForecast() {
   }, 2000);
 }
 
-// ✅ 🔥 FIXED SEARCH FUNCTION
 async function getWeather() {
   let city = document.getElementById("city").value.trim();
 
@@ -279,19 +332,15 @@ async function getWeather() {
   let res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
   let data1 = await res1.json();
 
-  // ❌ INVALID CITY FIX
   if (data1.cod !== 200) {
     document.getElementById("cityName").innerText = "❌ City not found";
     document.getElementById("temp").innerText = "";
     document.getElementById("condition").innerText = "";
-
     document.getElementById("data").innerHTML = "";
     document.getElementById("forecast").innerHTML = "";
-
     return;
   }
 
-  // ✅ VALID DATA
   document.getElementById("cityName").innerText = data1.name;
   document.getElementById("temp").innerText = data1.main.temp + "°C";
   document.getElementById("condition").innerText = data1.weather[0].description;
